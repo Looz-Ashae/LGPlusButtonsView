@@ -381,8 +381,12 @@ typedef NS_ENUM(NSUInteger, LGPlusButtonDescriptionsPosition)
     NSAssert(_buttonsArray.count == titles.count, kLGPlusButtonsViewAssertionWarning(@"titles"));
 
     for (NSUInteger i=0; i<_buttonsArray.count; i++)
-        if ([titles[i] isKindOfClass:[NSString class]])
+        if ([titles[i] isKindOfClass:[NSString class]]) {
             [_buttonsArray[i] setTitle:titles[i] forState:state];
+            [[_buttonsArray[i] titleLabel] setNumberOfLines:0];
+            [[_buttonsArray[i] titleLabel] setLineBreakMode:NSLineBreakByWordWrapping];
+            [[_buttonsArray[i] titleLabel] setTextAlignment:NSTextAlignmentCenter];
+        }
 
     [self setNeedsLayout];
 }
